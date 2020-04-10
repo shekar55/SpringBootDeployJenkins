@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh 'mvn clean install'
-              /*  archiveArtifacts artifacts: 'dist/app.jar'*/
+                archiveArtifacts artifacts: 'dist/app.jar'
             }
         }
         stage('Build Docker Image') {
@@ -38,9 +38,6 @@ pipeline {
         }
 
         stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
             steps {
                 milestone(1)
                 kubernetesDeploy(
