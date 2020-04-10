@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh 'mvn clean install'
-                archiveArtifacts artifacts: 'dist/app.jar'
+                //archiveArtifacts artifacts: 'dist/app.jar'
             }
         }
         stage('Build Docker Image') {
@@ -43,7 +43,7 @@ pipeline {
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
                     configs: 'kubernetes.yml',
-                    //enableConfigSubstitution: true
+                    enableConfigSubstitution: true
                 )
             }
         }
