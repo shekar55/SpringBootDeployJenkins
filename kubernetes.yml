@@ -1,0 +1,47 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: train-app
+  ports:
+    - protocol: TCP
+      port: 8080
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: train-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: train-app
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: train-app
+        track: stable
+    spec:
+      containers:
+        - name: train-app
+          image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 200m
