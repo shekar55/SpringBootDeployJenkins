@@ -32,6 +32,9 @@ Commands:
 - echo $(minikube docker-env)
 - minikube start
 
+if jenkins can't acces to fils in /var/lib/jenkins:
+Default path for service jenkins (Debian/Ubuntu) should be /var/lib/jenkins/jobs/ProjectName/workspace and everything inside /var/lib/jenkins/ must own user jenkins and group jenkins
+ - chown -R jenkins:jenkins /var/lib/jenkins/
 
 
 

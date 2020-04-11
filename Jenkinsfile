@@ -41,7 +41,7 @@ pipeline {
             steps {
                 milestone(1)
                 kubernetesDeploy(
-                    kubeconfigId: 'kkk',
+                    kubeconfigId: 'kubernetesKey',
                     configs: 'kubernetes.yml',
                     enableConfigSubstitution: true
                 )
