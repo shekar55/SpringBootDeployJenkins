@@ -24,6 +24,17 @@ In short:
 1. Pull new images from the registry.
 1. Deploy and manage images and containers
 
+Commands:
+- sudo service jenkins restart
+- visudo -f /etc/sudoers   ctr +o +entr + ctr + x
+- sudo usermod -a -G sudo jenkins
+- cat ~/.kube/config
+- echo $(minikube docker-env)
+- minikube start
+
+
+
+
 More info:
 <br>intro:
 https://www.youtube.com/watch?v=56jtwSrNvrs&list=PLS1QulWo1RIbY8xXPqz6ad_sNHkIP3IXI&index=18
