@@ -1,0 +1,29 @@
+pipeline {
+    agent {
+    docker { image 'openjdk:8-jre-alpine' }
+  }
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Running build automation'
+                sh 'mvn clean install'
+                //archiveArtifacts artifacts: 'dist/app.jar'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    app = docker.build(DOCKER_IMAGE_NAME)
+                    app.inside {
+                        sh 'echo Hello, World!'
+                    }
+                }
+            }
+        }
+        
+
+  
+    }
+    
+}
