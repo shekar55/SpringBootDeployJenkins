@@ -10,7 +10,7 @@ pipeline {
       }
             steps {
                 echo 'Running build automation'
-                sh 'mvn clean install'
+                sh 'mvn clean package'
                 //archiveArtifacts artifacts: 'dist/app.jar'
             }
         }
